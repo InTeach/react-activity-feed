@@ -161,15 +161,26 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
       trailing: true,
     });
 
+    const {
+      postContent = '',
+      imageUploads = {},
+      imageOrder = [],
+      fileUploads = {},
+      fileOrder = [],
+      ogUrlOrder = [],
+      ogStateByUrl = {},
+      ogActiveUrl = '',
+    } = this.props;
+
     this.state = {
-      text: this.props.postContent || '',
-      imageUploads: this.props.imageUploads || {},
-      imageOrder: this.props.imageOrder || [],
-      fileUploads: this.props.fileUploads || {},
-      fileOrder: this.props.fileOrder || [],
-      ogUrlOrder: this.props.ogUrlOrder || [],
-      ogStateByUrl: this.props.ogStateByUrl || {},
-      ogActiveUrl: this.props.ogActiveUrl || '',
+      text: postContent,
+      imageUploads,
+      imageOrder,
+      fileUploads,
+      fileOrder,
+      ogUrlOrder,
+      ogStateByUrl,
+      ogActiveUrl,
       submitting: false,
     };
   }
@@ -357,15 +368,25 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
 
     const modifiedActivity = this.props.modifyActivityData(activity);
     if (this.props.doRequest) {
+      const {
+        imageUploads,
+        imageOrder,
+        fileUploads,
+        fileOrder,
+        ogStateByUrl,
+        ogActiveUrl,
+        ogUrlOrder,
+      } = this.state;
+
       return await this.props.doRequest({
         ...modifiedActivity,
-        imageUploads: this.state.imageUploads,
-        imageOrder: this.state.imageUploads,
-        fileUploads: this.state.fileUploads,
-        fileOrder: this.state.fileOrder,
-        ogStateByUrl: this.state.ogStateByUrl,
-        ogActiveUrl: this.state.ogActiveUrl,
-        ogUrlOrder: this.state.ogUrlOrder,
+        imageUploads,
+        imageOrder,
+        fileUploads,
+        fileOrder,
+        ogStateByUrl,
+        ogActiveUrl,
+        ogUrlOrder,
       });
     } else {
       return await this.props.client

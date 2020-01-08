@@ -41,7 +41,8 @@
     "version": "yarn docs && git add docs && git add example yarn.lock",
     "postversion": "git push && git push --tags && npm publish",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "postinstall": "mkdir -p dist && rollup -c"
   },
   "husky": {
     "hooks": {
