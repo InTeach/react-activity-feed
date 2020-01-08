@@ -33,6 +33,7 @@ var reactFileUtils = require('react-file-utils');
 var reactFontawesome = require('@fortawesome/react-fontawesome');
 var freeRegularSvgIcons = require('@fortawesome/free-regular-svg-icons');
 var Lightbox = _interopDefault(require('react-images'));
+var _slicedToArray = _interopDefault(require('@babel/runtime/helpers/slicedToArray'));
 var emojiMart = require('emoji-mart');
 var ReactTextareaAutocomplete = _interopDefault(require('@webscopeio/react-textarea-autocomplete'));
 require('@webscopeio/react-textarea-autocomplete/style.css');
@@ -6120,7 +6121,21 @@ function (_React$Component2) {
                 console.log('DO REQUSET', _objectSpread({}, modifiedActivity, {
                   imageUploads: imageUploads,
                   imageOrder: imageOrder,
-                  fileUploads: fileUploads,
+                  fileUploads: Object.entries(fileUploads).reduce(function (memo, _ref8) {
+                    var _ref9 = _slicedToArray(_ref8, 2),
+                        id = _ref9[0],
+                        item = _ref9[1];
+
+                    return _objectSpread({}, memo, _defineProperty({}, id, _objectSpread({}, item, {
+                      file: {
+                        name: item.file.name,
+                        lastModified: item.file.lastModified,
+                        lastModifiedDate: item.file.lastModifiedDate,
+                        size: item.file.size,
+                        type: item.file.type
+                      }
+                    })));
+                  }, {}),
                   fileOrder: fileOrder,
                   ogStateByUrl: ogStateByUrl,
                   ogActiveUrl: ogActiveUrl,
@@ -6130,7 +6145,21 @@ function (_React$Component2) {
                 return this.props.doRequest(_objectSpread({}, modifiedActivity, {
                   imageUploads: imageUploads,
                   imageOrder: imageOrder,
-                  fileUploads: fileUploads,
+                  fileUploads: Object.entries(fileUploads).reduce(function (memo, _ref10) {
+                    var _ref11 = _slicedToArray(_ref10, 2),
+                        id = _ref11[0],
+                        item = _ref11[1];
+
+                    return _objectSpread({}, memo, _defineProperty({}, id, _objectSpread({}, item, {
+                      file: {
+                        name: item.file.name,
+                        lastModified: item.file.lastModified,
+                        lastModifiedDate: item.file.lastModifiedDate,
+                        size: item.file.size,
+                        type: item.file.type
+                      }
+                    })));
+                  }, {}),
                   fileOrder: fileOrder,
                   ogStateByUrl: ogStateByUrl,
                   ogActiveUrl: ogActiveUrl,
@@ -6197,7 +6226,7 @@ function (_React$Component2) {
         onPaste:
         /*#__PURE__*/
         function () {
-          var _ref8 = _asyncToGenerator(
+          var _ref12 = _asyncToGenerator(
           /*#__PURE__*/
           _regeneratorRuntime.mark(function _callee9(event) {
             var items, plainTextPromise, _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _loop, _iterator6, _step6, _ret, fileLikes, s;
@@ -6333,7 +6362,7 @@ function (_React$Component2) {
           }));
 
           return function (_x8) {
-            return _ref8.apply(this, arguments);
+            return _ref12.apply(this, arguments);
           };
         }()
       })), this._isOgScraping() && React.createElement("div", {
@@ -6365,9 +6394,9 @@ function (_React$Component2) {
         }
       }) : null)), availableOg && availableOg.length > 1 && React.createElement(React.Fragment, null, React.createElement("ol", {
         className: "raf-status-update-form__url-list"
-      }, availableOg.map(function (_ref9) {
-        var url = _ref9.url,
-            title = _ref9.title;
+      }, availableOg.map(function (_ref13) {
+        var url = _ref13.url,
+            title = _ref13.title;
         return React.createElement("li", {
           className: "raf-status-update-form__url-list-item".concat(url === _this4.state.ogActiveUrl ? ' raf-status-update-form__url-list-item--active' : ''),
           onClick: function onClick() {
