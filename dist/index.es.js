@@ -5858,7 +5858,6 @@ function (_React$Component2) {
         _this2$props$ogActive = _this2$props.ogActiveUrl,
         _ogActiveUrl = _this2$props$ogActive === void 0 ? '' : _this2$props$ogActive;
 
-    console.log(_this2.props);
     _this2.state = {
       text: postContent,
       imageUploads: imageUploads,
@@ -6106,12 +6105,13 @@ function (_React$Component2) {
                 modifiedActivity = this.props.modifyActivityData(activity);
 
                 if (!this.props.doRequest) {
-                  _context8.next = 16;
+                  _context8.next = 15;
                   break;
                 }
 
                 _this$state = this.state, imageUploads = _this$state.imageUploads, imageOrder = _this$state.imageOrder, fileUploads = _this$state.fileUploads, fileOrder = _this$state.fileOrder, ogStateByUrl = _this$state.ogStateByUrl, ogActiveUrl = _this$state.ogActiveUrl, ogUrlOrder = _this$state.ogUrlOrder;
-                console.log('DO REQUSET', _objectSpread({}, modifiedActivity, {
+                _context8.next = 12;
+                return this.props.doRequest(_objectSpread({}, modifiedActivity, {
                   imageUploads: imageUploads,
                   imageOrder: imageOrder,
                   fileUploads: Object.entries(fileUploads).reduce(function (memo, _ref8) {
@@ -6134,42 +6134,18 @@ function (_React$Component2) {
                   ogActiveUrl: ogActiveUrl,
                   ogUrlOrder: ogUrlOrder
                 }));
-                _context8.next = 13;
-                return this.props.doRequest(_objectSpread({}, modifiedActivity, {
-                  imageUploads: imageUploads,
-                  imageOrder: imageOrder,
-                  fileUploads: Object.entries(fileUploads).reduce(function (memo, _ref10) {
-                    var _ref11 = _slicedToArray(_ref10, 2),
-                        id = _ref11[0],
-                        item = _ref11[1];
 
-                    return _objectSpread({}, memo, _defineProperty({}, id, _objectSpread({}, item, {
-                      file: {
-                        name: item.file.name,
-                        lastModified: item.file.lastModified,
-                        lastModifiedDate: item.file.lastModifiedDate,
-                        size: item.file.size,
-                        type: item.file.type
-                      }
-                    })));
-                  }, {}),
-                  fileOrder: fileOrder,
-                  ogStateByUrl: ogStateByUrl,
-                  ogActiveUrl: ogActiveUrl,
-                  ogUrlOrder: ogUrlOrder
-                }));
-
-              case 13:
+              case 12:
                 return _context8.abrupt("return", _context8.sent);
 
-              case 16:
-                _context8.next = 18;
+              case 15:
+                _context8.next = 17;
                 return this.props.client.feed(this.props.feedGroup, this.props.userId).addActivity(modifiedActivity);
 
-              case 18:
+              case 17:
                 return _context8.abrupt("return", _context8.sent);
 
-              case 19:
+              case 18:
               case "end":
                 return _context8.stop();
             }
@@ -6219,7 +6195,7 @@ function (_React$Component2) {
         onPaste:
         /*#__PURE__*/
         function () {
-          var _ref12 = _asyncToGenerator(
+          var _ref10 = _asyncToGenerator(
           /*#__PURE__*/
           _regeneratorRuntime.mark(function _callee9(event) {
             var items, plainTextPromise, _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _loop, _iterator6, _step6, _ret, fileLikes, s;
@@ -6355,7 +6331,7 @@ function (_React$Component2) {
           }));
 
           return function (_x8) {
-            return _ref12.apply(this, arguments);
+            return _ref10.apply(this, arguments);
           };
         }()
       })), this._isOgScraping() && createElement("div", {
@@ -6387,9 +6363,9 @@ function (_React$Component2) {
         }
       }) : null)), availableOg && availableOg.length > 1 && createElement(Fragment, null, createElement("ol", {
         className: "raf-status-update-form__url-list"
-      }, availableOg.map(function (_ref13) {
-        var url = _ref13.url,
-            title = _ref13.title;
+      }, availableOg.map(function (_ref11) {
+        var url = _ref11.url,
+            title = _ref11.title;
         return createElement("li", {
           className: "raf-status-update-form__url-list-item".concat(url === _this4.state.ogActiveUrl ? ' raf-status-update-form__url-list-item--active' : ''),
           onClick: function onClick() {
