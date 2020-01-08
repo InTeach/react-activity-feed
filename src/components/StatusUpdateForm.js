@@ -87,6 +87,15 @@ type Props = {|
   innerRef?: ReactRefObjectOrFunction<HTMLTextAreaElement>,
   /** The header to display */
   Header: React.Node,
+  submitText?: string,
+  postContent?: string,
+  imageUploads?: { [string]: ImageUpload },
+  imageOrder?: Array<string>,
+  ogActiveUrl?: string,
+  ogUrlOrder?: Array<string>,
+  ogStateByUrl?: { [string]: OgState },
+  fileUploads?: { [string]: FileUpload },
+  fileOrder?: Array<string>,
 |};
 
 /**
@@ -145,24 +154,24 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
     }
   };
 
-  state = {
-    text: '',
-    imageUploads: {},
-    imageOrder: [],
-    fileUploads: {},
-    fileOrder: [],
-    ogUrlOrder: [],
-    ogStateByUrl: {},
-    ogActiveUrl: null,
-    submitting: false,
-  };
-
   constructor(props) {
     super(props);
     this._handleOgDebounced = _debounce(this.handleOG, 250, {
       leading: true,
       trailing: true,
     });
+
+    this.state = {
+      text: this.props.postContent || '',
+      imageUploads: this.props.imageUploads || {},
+      imageOrder: this.props.imageOrder || [],
+      fileUploads: this.props.fileUploads || {},
+      fileOrder: this.props.fileOrder || [],
+      ogUrlOrder: this.props.ogUrlOrder || [],
+      ogStateByUrl: this.props.ogStateByUrl || {},
+      ogActiveUrl: this.props.ogActiveUrl || '',
+      submitting: false,
+    };
   }
 
   handleOG(text) {
@@ -348,7 +357,16 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
 
     const modifiedActivity = this.props.modifyActivityData(activity);
     if (this.props.doRequest) {
-      return await this.props.doRequest(modifiedActivity);
+      return await this.props.doRequest({
+        ...modifiedActivity,
+        imageUploads: this.state.imageUploads,
+        imageOrder: this.state.imageUploads,
+        fileUploads: this.state.fileUploads,
+        fileOrder: this.state.fileOrder,
+        ogStateByUrl: this.state.ogStateByUrl,
+        ogActiveUrl: this.state.ogActiveUrl,
+        ogUrlOrder: this.state.ogUrlOrder,
+      });
     } else {
       return await this.props.client
         .feed(this.props.feedGroup, this.props.userId)
@@ -786,7 +804,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                   loading={this.state.submitting}
                   disabled={!this._canSubmit()}
                 >
-                  Post
+                  {this.props.submitText ? this.props.submitText : 'Post'}
                 </Button>
               </div>
             </PanelFooter>
