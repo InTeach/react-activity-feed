@@ -172,6 +172,8 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
       ogActiveUrl = '',
     } = this.props;
 
+    console.log(this.props);
+
     this.state = {
       text: postContent,
       imageUploads,
@@ -377,6 +379,17 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
         ogActiveUrl,
         ogUrlOrder,
       } = this.state;
+
+      console.log('DO REQUSET', {
+        ...modifiedActivity,
+        imageUploads,
+        imageOrder,
+        fileUploads,
+        fileOrder,
+        ogStateByUrl,
+        ogActiveUrl,
+        ogUrlOrder,
+      });
 
       return await this.props.doRequest({
         ...modifiedActivity,

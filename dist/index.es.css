@@ -64,30 +64,6 @@ body [class*=' raf-'] {
       white-space: pre-line;
     }
 
-.raf-attached-activity {
-  background: #ffffff;
-  margin-top: 8px;
-  padding: 10px 10px 12px;
-  border-radius: 3px;
-}
-
-.raf-attached-activity__author,
-.raf-attached-activity__content {
-  color: #414D54;
-  margin: 0;
-}
-
-.raf-attached-activity__images {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 0 -5px;
-}
-
-.raf-attached-activity__images > * {
-  margin: 0 5px;
-}
-
 .raf-activity-footer {
   margin: 8px 16px;
   padding: 16px 0;
@@ -137,6 +113,30 @@ body [class*=' raf-'] {
 
   .raf-activity-footer__right > div:last-child {
   margin-right: 0;
+}
+
+.raf-attached-activity {
+  background: #ffffff;
+  margin-top: 8px;
+  padding: 10px 10px 12px;
+  border-radius: 3px;
+}
+
+.raf-attached-activity__author,
+.raf-attached-activity__content {
+  color: #414D54;
+  margin: 0;
+}
+
+.raf-attached-activity__images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 -5px;
+}
+
+.raf-attached-activity__images > * {
+  margin: 0 5px;
 }
 
 .raf-audio__wrapper {
@@ -673,22 +673,6 @@ body [class*=' raf-'] {
   font-weight: 700;
 }
 
-.raf-data-label__label,
-  .raf-data-label__data {
-    display: block;
-  }
-  .raf-data-label__label {
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 800;
-    color: #414D54;
-  }
-  .raf-data-label__data {
-    font-size: 16px;
-    color: #414D54;
-    font-weight: 300;
-  }
-
 .raf-dropdown {
   position: relative;
   display: inline-block;
@@ -722,6 +706,22 @@ body [class*=' raf-'] {
 .raf-dropdown__box ul a {
     font-size: 14px;
     color: white;
+  }
+
+.raf-data-label__label,
+  .raf-data-label__data {
+    display: block;
+  }
+  .raf-data-label__label {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 800;
+    color: #414D54;
+  }
+  .raf-data-label__data {
+    font-size: 16px;
+    color: #414D54;
+    font-weight: 300;
   }
 
 .raf-dropdown-panel {
@@ -789,20 +789,6 @@ body [class*=' raf-'] {
   left: 40px;
 }
 
-.raf-feed-placeholder {
-  background: rgba(0, 0, 0, .08);
-  border-radius: 8px;
-  width: 100%;
-  padding: 32px 16px;
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .raf-flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -826,6 +812,104 @@ body [class*=' raf-'] {
         -ms-flex-align: center;
             align-items: center;
   }
+
+.raf-feed-placeholder {
+  background: rgba(0, 0, 0, .08);
+  border-radius: 8px;
+  width: 100%;
+  padding: 32px 16px;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.raf-follow-button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border: 1px solid #0BA8E0;
+  margin: 3px;
+  color: #0BA8E0;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 10px;
+  border-radius: 100px;
+  min-width: 120px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.raf-follow-button:hover,
+.raf-follow-button--active {
+  background: #0BA8E0;
+  color: #ffffff;
+}
+
+.raf-follow-button:focus,
+.raf-follow-button:active,
+.raf-follow-button--active:focus,
+.raf-follow-button--active:active {
+  -webkit-box-shadow: 0 0 0 3px #0BA8E0;
+          box-shadow: 0 0 0 3px #0BA8E0;
+}
+
+.raf-icon-badge {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+  .raf-icon-badge svg {
+    fill: rgb(25, 25, 25);
+    -webkit-transition: fill 0.1s ease-in-out;
+    transition: fill 0.1s ease-in-out;
+  }
+
+.raf-icon-badge:hover svg {
+      fill: rgb(0, 212, 106);
+}
+
+.raf-icon-badge__badge {
+  position: absolute;
+  top: -4px;
+  left: 60%;
+  min-width: 14px;
+  height: 13px;
+  background-color: #FF0000;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 3px;
+}
+
+.raf-icon-badge__badge p {
+  margin: -1px 0 0 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 
 .raf-gallery {
   width: 100%;
@@ -1037,90 +1121,6 @@ body [class*=' raf-'] {
   }
 }
 
-.raf-follow-button {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  border: 1px solid #0BA8E0;
-  margin: 3px;
-  color: #0BA8E0;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 10px 10px;
-  border-radius: 100px;
-  min-width: 120px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  cursor: pointer;
-}
-
-.raf-follow-button:hover,
-.raf-follow-button--active {
-  background: #0BA8E0;
-  color: #ffffff;
-}
-
-.raf-follow-button:focus,
-.raf-follow-button:active,
-.raf-follow-button--active:focus,
-.raf-follow-button--active:active {
-  -webkit-box-shadow: 0 0 0 3px #0BA8E0;
-          box-shadow: 0 0 0 3px #0BA8E0;
-}
-
-.raf-icon-badge {
-  position: relative;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-}
-
-  .raf-icon-badge svg {
-    fill: rgb(25, 25, 25);
-    -webkit-transition: fill 0.1s ease-in-out;
-    transition: fill 0.1s ease-in-out;
-  }
-
-.raf-icon-badge:hover svg {
-      fill: rgb(0, 212, 106);
-}
-
-.raf-icon-badge__badge {
-  position: absolute;
-  top: -4px;
-  left: 60%;
-  min-width: 14px;
-  height: 13px;
-  background-color: #FF0000;
-  border-radius: 4px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0 3px;
-}
-
-.raf-icon-badge__badge p {
-  margin: -1px 0 0 0;
-  padding: 0;
-  font-size: 12px;
-  font-weight: 700;
-  color: white;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
 .raf-link {
   color: #0BA8E0;
   text-decoration: none;
@@ -1146,57 +1146,6 @@ body [class*=' raf-'] {
 .raf-loading-indicator {
   padding: 40;
   background-color: rgb(247, 247, 247);
-}
-
-.raf-new-activities-notification {
-  /* reset */
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  overflow: visible;
-  background: transparent;
-
-  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-  line-height: normal;
-
-  /* Corrects font smoothing for webkit */
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-  text-align: inherit;
-
-  /* Corrects inability to style clickable `input` types in iOS */
-  -webkit-appearance: none;
-  outline: none;
-
-  /* endreset */
-  width: 100%;
-  height: 40px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background: rgb(248, 252, 254);
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  position: relative;
-  z-index: 90;
-  margin-bottom: 1px;
-}
-
-.raf-new-activities-notification:active {
-  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
-          box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
 }
 
 .raf-modal {
@@ -1249,6 +1198,57 @@ body [class*=' raf-'] {
   opacity: 0.01;
   -webkit-transition: opacity 300ms ease-in;
   transition: opacity 300ms ease-in;
+}
+
+.raf-new-activities-notification {
+  /* reset */
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  text-align: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+  outline: none;
+
+  /* endreset */
+  width: 100%;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: rgb(248, 252, 254);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  z-index: 90;
+  margin-bottom: 1px;
+}
+
+.raf-new-activities-notification:active {
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
 }
 
 .raf-notification {
@@ -1331,12 +1331,12 @@ body [class*=' raf-'] {
             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
   }
 
-.raf-panel-footer {
-  padding: 0 30px 16px 30px;
-}
-
 .raf-panel-content {
   padding: 15px 30px;
+}
+
+.raf-panel-footer {
+  padding: 0 30px 16px 30px;
 }
 
 .raf-panel-header {
@@ -1375,27 +1375,6 @@ body [class*=' raf-'] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.raf-reaction-icon {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 4px 0;
-  cursor: pointer;
-}
-
-.raf-reaction-icon__image {
-  margin-right: 8px;
-}
-
-.raf-reaction-icon__label {
-  font-size: 14px;
-  color: #414D54;
-  font-weight: 800;
 }
 
 .raf-status-update-form__url-list {
@@ -1529,6 +1508,27 @@ body [class*=' raf-'] {
       padding: 0 10px 0 5px;
     }
 
+.raf-reaction-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+.raf-reaction-icon__image {
+  margin-right: 8px;
+}
+
+.raf-reaction-icon__label {
+  font-size: 14px;
+  color: #414D54;
+  font-weight: 800;
+}
+
 .raf-time-header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1594,6 +1594,15 @@ body [class*=' raf-'] {
 
 .raf-user-bar .raf-avatar {
   margin-right: 12px;
+}
+
+.raf-title,
+.raf-title * {
+  color: #414D54;
+  font-size: 18px;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  margin: 0;
 }
 
 .raf-video__frame {
@@ -1681,15 +1690,6 @@ body [class*=' raf-'] {
         height: inherit;
         width: 100px;
     }
-}
-
-.raf-title,
-.raf-title * {
-  color: #414D54;
-  font-size: 18px;
-  font-family: Avenir, Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  margin: 0;
 }
 
 [class^='rfu-'],

@@ -5845,15 +5845,35 @@ function (_React$Component2) {
       leading: true,
       trailing: true
     });
+
+    var _this2$props = _this2.props,
+        _this2$props$postCont = _this2$props.postContent,
+        postContent = _this2$props$postCont === void 0 ? '' : _this2$props$postCont,
+        _this2$props$imageUpl = _this2$props.imageUploads,
+        imageUploads = _this2$props$imageUpl === void 0 ? {} : _this2$props$imageUpl,
+        _this2$props$imageOrd = _this2$props.imageOrder,
+        imageOrder = _this2$props$imageOrd === void 0 ? [] : _this2$props$imageOrd,
+        _this2$props$fileUplo = _this2$props.fileUploads,
+        fileUploads = _this2$props$fileUplo === void 0 ? {} : _this2$props$fileUplo,
+        _this2$props$fileOrde = _this2$props.fileOrder,
+        fileOrder = _this2$props$fileOrde === void 0 ? [] : _this2$props$fileOrde,
+        _this2$props$ogUrlOrd = _this2$props.ogUrlOrder,
+        ogUrlOrder = _this2$props$ogUrlOrd === void 0 ? [] : _this2$props$ogUrlOrd,
+        _this2$props$ogStateB = _this2$props.ogStateByUrl,
+        _ogStateByUrl = _this2$props$ogStateB === void 0 ? {} : _this2$props$ogStateB,
+        _this2$props$ogActive = _this2$props.ogActiveUrl,
+        _ogActiveUrl = _this2$props$ogActive === void 0 ? '' : _this2$props$ogActive;
+
+    console.log(_this2.props);
     _this2.state = {
-      text: _this2.props.postContent || '',
-      imageUploads: _this2.props.imageUploads || {},
-      imageOrder: _this2.props.imageOrder || [],
-      fileUploads: _this2.props.fileUploads || {},
-      fileOrder: _this2.props.fileOrder || [],
-      ogUrlOrder: _this2.props.ogUrlOrder || [],
-      ogStateByUrl: _this2.props.ogStateByUrl || {},
-      ogActiveUrl: _this2.props.ogActiveUrl || '',
+      text: postContent,
+      imageUploads: imageUploads,
+      imageOrder: imageOrder,
+      fileUploads: fileUploads,
+      fileOrder: fileOrder,
+      ogUrlOrder: ogUrlOrder,
+      ogStateByUrl: _ogStateByUrl,
+      ogActiveUrl: _ogActiveUrl,
       submitting: false
     };
     return _this2;
@@ -6049,7 +6069,8 @@ function (_React$Component2) {
       var _addActivity = _asyncToGenerator(
       /*#__PURE__*/
       _regeneratorRuntime.mark(function _callee8() {
-        var activity, uploadedImages, uploadedFiles, attachments, modifiedActivity;
+        var activity, uploadedImages, uploadedFiles, attachments, modifiedActivity, _this$state, imageUploads, imageOrder, fileUploads, fileOrder, ogStateByUrl, ogActiveUrl, ogUrlOrder;
+
         return _regeneratorRuntime.wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
@@ -6091,32 +6112,42 @@ function (_React$Component2) {
                 modifiedActivity = this.props.modifyActivityData(activity);
 
                 if (!this.props.doRequest) {
-                  _context8.next = 14;
+                  _context8.next = 16;
                   break;
                 }
 
-                _context8.next = 11;
+                _this$state = this.state, imageUploads = _this$state.imageUploads, imageOrder = _this$state.imageOrder, fileUploads = _this$state.fileUploads, fileOrder = _this$state.fileOrder, ogStateByUrl = _this$state.ogStateByUrl, ogActiveUrl = _this$state.ogActiveUrl, ogUrlOrder = _this$state.ogUrlOrder;
+                console.log('DO REQUSET', _objectSpread({}, modifiedActivity, {
+                  imageUploads: imageUploads,
+                  imageOrder: imageOrder,
+                  fileUploads: fileUploads,
+                  fileOrder: fileOrder,
+                  ogStateByUrl: ogStateByUrl,
+                  ogActiveUrl: ogActiveUrl,
+                  ogUrlOrder: ogUrlOrder
+                }));
+                _context8.next = 13;
                 return this.props.doRequest(_objectSpread({}, modifiedActivity, {
-                  imageUploads: this.state.imageUploads,
-                  imageOrder: this.state.imageUploads,
-                  fileUploads: this.state.fileUploads,
-                  fileOrder: this.state.fileOrder,
-                  ogStateByUrl: this.state.ogStateByUrl,
-                  ogActiveUrl: this.state.ogActiveUrl,
-                  ogUrlOrder: this.state.ogUrlOrder
+                  imageUploads: imageUploads,
+                  imageOrder: imageOrder,
+                  fileUploads: fileUploads,
+                  fileOrder: fileOrder,
+                  ogStateByUrl: ogStateByUrl,
+                  ogActiveUrl: ogActiveUrl,
+                  ogUrlOrder: ogUrlOrder
                 }));
 
-              case 11:
+              case 13:
                 return _context8.abrupt("return", _context8.sent);
-
-              case 14:
-                _context8.next = 16;
-                return this.props.client.feed(this.props.feedGroup, this.props.userId).addActivity(modifiedActivity);
 
               case 16:
+                _context8.next = 18;
+                return this.props.client.feed(this.props.feedGroup, this.props.userId).addActivity(modifiedActivity);
+
+              case 18:
                 return _context8.abrupt("return", _context8.sent);
 
-              case 17:
+              case 19:
               case "end":
                 return _context8.stop();
             }
