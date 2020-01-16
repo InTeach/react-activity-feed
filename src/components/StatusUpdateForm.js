@@ -115,7 +115,13 @@ export default class StatusUpdateForm extends React.Component<Props> {
   render() {
     return (
       <StreamApp.Consumer>
-        {(appCtx) => <StatusUpdateFormInner {...this.props} {...appCtx} />}
+        {(appCtx) => (
+          <StatusUpdateFormInner
+            ref={this.props.formRef}
+            {...this.props}
+            {...appCtx}
+          />
+        )}
       </StreamApp.Consumer>
     );
   }
@@ -183,6 +189,10 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
       ogActiveUrl,
       submitting: false,
     };
+  }
+
+  debugFunction() {
+    console.log('ta mere 2');
   }
 
   handleOG(text) {
@@ -382,8 +392,8 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
         ...modifiedActivity,
         imageUploads,
         imageOrder,
-        fileUploads: Object.entries(fileUploads).reduce((memo, [id, item]) => {
-          return {
+        fileUploads: Object.entries(fileUploads).reduce(
+          (memo, [id, item]) => ({
             ...memo,
             [id]: {
               ...item,
@@ -395,8 +405,9 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                 type: item.file.type,
               },
             },
-          };
-        }, {}),
+          }),
+          {},
+        ),
         fileOrder,
         ogStateByUrl,
         ogActiveUrl,

@@ -5180,7 +5180,9 @@ function (_React$Component) {
       var _this = this;
 
       return React.createElement(StreamApp.Consumer, null, function (appCtx) {
-        return React.createElement(StatusUpdateFormInner, _extends({}, _this.props, appCtx));
+        return React.createElement(StatusUpdateFormInner, _extends({
+          ref: _this.props.formRef
+        }, _this.props, appCtx));
       });
     }
   }]);
@@ -5846,6 +5848,7 @@ function (_React$Component2) {
       leading: true,
       trailing: true
     });
+    console.log(_this2.refs);
 
     var _this2$props = _this2.props,
         _this2$props$postCont = _this2$props.postContent,
@@ -5880,6 +5883,11 @@ function (_React$Component2) {
   }
 
   _createClass(StatusUpdateFormInner, [{
+    key: "debugFunction",
+    value: function debugFunction() {
+      console.log('ta mere 2');
+    }
+  }, {
     key: "handleOG",
     value: function handleOG(text) {
       var _this3 = this;

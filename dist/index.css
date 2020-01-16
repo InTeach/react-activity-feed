@@ -139,14 +139,6 @@ body [class*=' raf-'] {
   margin: 0 5px;
 }
 
-/* .raf-avatar {} */
-.raf-avatar--rounded {
-  border-radius: 4px;
-}
-.raf-avatar--circle {
-  border-radius: 100%;
-}
-
 .raf-audio__wrapper {
     height: 80px;
     overflow: hidden;
@@ -247,6 +239,45 @@ body [class*=' raf-'] {
         transition: width 0.5s linear;
       }
 
+/* .raf-avatar {} */
+.raf-avatar--rounded {
+  border-radius: 4px;
+}
+.raf-avatar--circle {
+  border-radius: 100%;
+}
+
+.raf-avatar-group__avatar:first-of-type {
+  margin: 0 -15px 0 0;
+}
+
+.raf-avatar-group__avatar .raf-avatar--circle {
+  border: 1px solid #ffffff;
+
+  /* firefox fix for 1px shine translucent gap between image and border */
+  background: #ffffff;
+}
+
+.raf-avatar-group__avatar {
+  display: inline-block;
+
+  /* position: relative; */
+
+  /* transform: translateX(-50%); */
+  padding: 0;
+  margin: 0 -15px;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in
+}
+
+.raf-avatar-group__avatar:hover {
+  margin-right: 0;
+}
+
+.raf-avatar-group__avatar:last-of-type:hover {
+  margin: 0 -15px;
+}
+
 .raf-button {
   /* reset */
   border: none;
@@ -329,37 +360,6 @@ body [class*=' raf-'] {
 .raf-button--faded:active {
     -webkit-box-shadow: 0 0 0 3px rgb(140, 140, 140);
             box-shadow: 0 0 0 3px rgb(140, 140, 140);
-}
-
-.raf-avatar-group__avatar:first-of-type {
-  margin: 0 -15px 0 0;
-}
-
-.raf-avatar-group__avatar .raf-avatar--circle {
-  border: 1px solid #ffffff;
-
-  /* firefox fix for 1px shine translucent gap between image and border */
-  background: #ffffff;
-}
-
-.raf-avatar-group__avatar {
-  display: inline-block;
-
-  /* position: relative; */
-
-  /* transform: translateX(-50%); */
-  padding: 0;
-  margin: 0 -15px;
-  -webkit-transition: all 0.1s ease-in;
-  transition: all 0.1s ease-in
-}
-
-.raf-avatar-group__avatar:hover {
-  margin-right: 0;
-}
-
-.raf-avatar-group__avatar:last-of-type:hover {
-  margin: 0 -15px;
 }
 
 .raf-b2btimeline {
@@ -457,6 +457,71 @@ body [class*=' raf-'] {
   .raf-b2btimeline__time {
       padding: 0;
   }
+}
+
+.raf-comment-field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 16px 0;
+}
+
+  /* &__ {} */
+
+  .raf-comment-field__group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+
+  .raf-comment-field__group .raf-button {
+      height: 100%;
+      border-radius: 0 100px 100px 0;
+      margin: 0;
+      text-align: left;
+      -webkit-box-pack: start;
+          -ms-flex-pack: start;
+              justify-content: flex-start
+    }
+
+  .raf-comment-field__group .raf-button:focus {
+      -webkit-box-shadow: inset 0 0 0 3px rgb(0, 191, 95);
+              box-shadow: inset 0 0 0 3px rgb(0, 191, 95);
+}
+
+  .raf-comment-field .raf-textarea .raf-textarea__textarea {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    resize: none;
+    background: #f7f7f7;
+    color: #414D54;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 100px 0 0 100px;
+    padding: 10px 22px;
+    border: 0;
+    margin-left: 8px;
+    position: relative
+  }
+
+  .raf-comment-field .raf-textarea .raf-textarea__textarea::-webkit-input-placeholder {
+  color: rgb(160, 166, 170);
+}
+
+  .raf-comment-field .raf-textarea .raf-textarea__textarea::-moz-placeholder {
+  color: rgb(160, 166, 170);
+}
+
+  .raf-comment-field .raf-textarea .raf-textarea__textarea::-ms-input-placeholder {
+  color: rgb(160, 166, 170);
+}
+
+  .raf-comment-field .raf-textarea .raf-textarea__textarea::placeholder {
+  color: rgb(160, 166, 170);
 }
 
 .raf-card {
@@ -580,71 +645,6 @@ body [class*=' raf-'] {
     color: #414D54;
     font-weight: 300;
   }
-
-.raf-comment-field {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 16px 0;
-}
-
-  /* &__ {} */
-
-  .raf-comment-field__group {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-  }
-
-  .raf-comment-field__group .raf-button {
-      height: 100%;
-      border-radius: 0 100px 100px 0;
-      margin: 0;
-      text-align: left;
-      -webkit-box-pack: start;
-          -ms-flex-pack: start;
-              justify-content: flex-start
-    }
-
-  .raf-comment-field__group .raf-button:focus {
-      -webkit-box-shadow: inset 0 0 0 3px rgb(0, 191, 95);
-              box-shadow: inset 0 0 0 3px rgb(0, 191, 95);
-}
-
-  .raf-comment-field .raf-textarea .raf-textarea__textarea {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    resize: none;
-    background: #f7f7f7;
-    color: #414D54;
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 100px 0 0 100px;
-    padding: 10px 22px;
-    border: 0;
-    margin-left: 8px;
-    position: relative
-  }
-
-  .raf-comment-field .raf-textarea .raf-textarea__textarea::-webkit-input-placeholder {
-  color: rgb(160, 166, 170);
-}
-
-  .raf-comment-field .raf-textarea .raf-textarea__textarea::-moz-placeholder {
-  color: rgb(160, 166, 170);
-}
-
-  .raf-comment-field .raf-textarea .raf-textarea__textarea::-ms-input-placeholder {
-  color: rgb(160, 166, 170);
-}
-
-  .raf-comment-field .raf-textarea .raf-textarea__textarea::placeholder {
-  color: rgb(160, 166, 170);
-}
 
 .raf-comment-item {
   display: -webkit-box;
@@ -1072,20 +1072,6 @@ body [class*=' raf-'] {
           box-shadow: 0 0 0 3px #0BA8E0;
 }
 
-.raf-load-more-button button {
-    /* border: none;
-    background: #fafaf8;
-    padding: 8px 16px;
-    margin: 8px 0;
-    font-size: 14px;
-    color: $fontColor;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: $borderRadius;
-    box-shadow: 0px 2px 5px 0px color($black a(10%)); */
-    width: 100%;
-  }
-
 .raf-icon-badge {
   position: relative;
   display: inline-block;
@@ -1143,10 +1129,19 @@ body [class*=' raf-'] {
   cursor: pointer;
 }
 
-.raf-loading-indicator {
-  padding: 40;
-  background-color: rgb(247, 247, 247);
-}
+.raf-load-more-button button {
+    /* border: none;
+    background: #fafaf8;
+    padding: 8px 16px;
+    margin: 8px 0;
+    font-size: 14px;
+    color: $fontColor;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: $borderRadius;
+    box-shadow: 0px 2px 5px 0px color($black a(10%)); */
+    width: 100%;
+  }
 
 .raf-modal {
   width: 100vw;
@@ -1198,6 +1193,11 @@ body [class*=' raf-'] {
   opacity: 0.01;
   -webkit-transition: opacity 300ms ease-in;
   transition: opacity 300ms ease-in;
+}
+
+.raf-loading-indicator {
+  padding: 40;
+  background-color: rgb(247, 247, 247);
 }
 
 .raf-new-activities-notification {
@@ -1335,10 +1335,6 @@ body [class*=' raf-'] {
   padding: 15px 30px;
 }
 
-.raf-panel-footer {
-  padding: 0 30px 16px 30px;
-}
-
 .raf-panel-header {
   position: relative;
   border-bottom: 2px solid rgb(242, 242, 242);
@@ -1396,6 +1392,10 @@ body [class*=' raf-'] {
   font-size: 14px;
   color: #414D54;
   font-weight: 800;
+}
+
+.raf-panel-footer {
+  padding: 0 30px 16px 30px;
 }
 
 .raf-status-update-form__url-list {
