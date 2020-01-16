@@ -5848,7 +5848,6 @@ function (_React$Component2) {
       leading: true,
       trailing: true
     });
-    console.log(_this2.refs);
 
     var _this2$props = _this2.props,
         _this2$props$postCont = _this2$props.postContent,

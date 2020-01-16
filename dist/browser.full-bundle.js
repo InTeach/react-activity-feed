@@ -47434,6 +47434,52 @@
     return SinglePost;
   }(React__default.Component);
 
+  function _arrayWithHoles$1(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  var arrayWithHoles = _arrayWithHoles$1;
+
+  function _iterableToArrayLimit$1(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  var iterableToArrayLimit = _iterableToArrayLimit$1;
+
+  function _nonIterableRest$1() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  }
+
+  var nonIterableRest = _nonIterableRest$1;
+
+  function _slicedToArray$1(arr, i) {
+    return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+  }
+
+  var slicedToArray = _slicedToArray$1;
+
   /**
    * Simple Components that renders a panel. To be combined with PanelHeader, PanelContent, PanelFooter. Used by the library to render the B2BActivity and StatusUpdateForm
    *
@@ -98827,7 +98873,9 @@
         var _this = this;
 
         return React.createElement(StreamApp.Consumer, null, function (appCtx) {
-          return React.createElement(StatusUpdateFormInner, _extends_1({}, _this.props, appCtx));
+          return React.createElement(StatusUpdateFormInner, _extends_1({
+            ref: _this.props.formRef
+          }, _this.props, appCtx));
         });
       }
     }]);
@@ -98868,18 +98916,6 @@
         } else if (_this2.props.innerRef != null) {
           _this2.props.innerRef.current = el;
         }
-      });
-
-      defineProperty(assertThisInitialized(_this2), "state", {
-        text: '',
-        imageUploads: {},
-        imageOrder: [],
-        fileUploads: {},
-        fileOrder: [],
-        ogUrlOrder: [],
-        ogStateByUrl: {},
-        ogActiveUrl: null,
-        submitting: false
       });
 
       defineProperty(assertThisInitialized(_this2), "_dismissOg", function (og) {
@@ -99505,10 +99541,45 @@
         leading: true,
         trailing: true
       });
+
+      var _this2$props = _this2.props,
+          _this2$props$postCont = _this2$props.postContent,
+          postContent = _this2$props$postCont === void 0 ? '' : _this2$props$postCont,
+          _this2$props$imageUpl = _this2$props.imageUploads,
+          imageUploads = _this2$props$imageUpl === void 0 ? {} : _this2$props$imageUpl,
+          _this2$props$imageOrd = _this2$props.imageOrder,
+          imageOrder = _this2$props$imageOrd === void 0 ? [] : _this2$props$imageOrd,
+          _this2$props$fileUplo = _this2$props.fileUploads,
+          fileUploads = _this2$props$fileUplo === void 0 ? {} : _this2$props$fileUplo,
+          _this2$props$fileOrde = _this2$props.fileOrder,
+          fileOrder = _this2$props$fileOrde === void 0 ? [] : _this2$props$fileOrde,
+          _this2$props$ogUrlOrd = _this2$props.ogUrlOrder,
+          ogUrlOrder = _this2$props$ogUrlOrd === void 0 ? [] : _this2$props$ogUrlOrd,
+          _this2$props$ogStateB = _this2$props.ogStateByUrl,
+          _ogStateByUrl = _this2$props$ogStateB === void 0 ? {} : _this2$props$ogStateB,
+          _this2$props$ogActive = _this2$props.ogActiveUrl,
+          _ogActiveUrl = _this2$props$ogActive === void 0 ? '' : _this2$props$ogActive;
+
+      _this2.state = {
+        text: postContent,
+        imageUploads: imageUploads,
+        imageOrder: imageOrder,
+        fileUploads: fileUploads,
+        fileOrder: fileOrder,
+        ogUrlOrder: ogUrlOrder,
+        ogStateByUrl: _ogStateByUrl,
+        ogActiveUrl: _ogActiveUrl,
+        submitting: false
+      };
       return _this2;
     }
 
     createClass(StatusUpdateFormInner, [{
+      key: "debugFunction",
+      value: function debugFunction() {
+        console.log('ta mere 2');
+      }
+    }, {
       key: "handleOG",
       value: function handleOG(text) {
         var _this3 = this;
@@ -99698,7 +99769,8 @@
         var _addActivity = asyncToGenerator(
         /*#__PURE__*/
         regenerator.mark(function _callee8() {
-          var activity, uploadedImages, uploadedFiles, attachments, modifiedActivity;
+          var activity, uploadedImages, uploadedFiles, attachments, modifiedActivity, _this$state, imageUploads, imageOrder, fileUploads, fileOrder, ogStateByUrl, ogActiveUrl, ogUrlOrder;
+
           return regenerator.wrap(function _callee8$(_context8) {
             while (1) {
               switch (_context8.prev = _context8.next) {
@@ -99740,24 +99812,47 @@
                   modifiedActivity = this.props.modifyActivityData(activity);
 
                   if (!this.props.doRequest) {
-                    _context8.next = 14;
+                    _context8.next = 15;
                     break;
                   }
 
-                  _context8.next = 11;
-                  return this.props.doRequest(modifiedActivity);
+                  _this$state = this.state, imageUploads = _this$state.imageUploads, imageOrder = _this$state.imageOrder, fileUploads = _this$state.fileUploads, fileOrder = _this$state.fileOrder, ogStateByUrl = _this$state.ogStateByUrl, ogActiveUrl = _this$state.ogActiveUrl, ogUrlOrder = _this$state.ogUrlOrder;
+                  _context8.next = 12;
+                  return this.props.doRequest(objectSpread({}, modifiedActivity, {
+                    imageUploads: imageUploads,
+                    imageOrder: imageOrder,
+                    fileUploads: Object.entries(fileUploads).reduce(function (memo, _ref8) {
+                      var _ref9 = slicedToArray(_ref8, 2),
+                          id = _ref9[0],
+                          item = _ref9[1];
 
-                case 11:
+                      return objectSpread({}, memo, defineProperty({}, id, objectSpread({}, item, {
+                        file: {
+                          name: item.file.name,
+                          lastModified: item.file.lastModified,
+                          lastModifiedDate: item.file.lastModifiedDate,
+                          size: item.file.size,
+                          type: item.file.type
+                        }
+                      })));
+                    }, {}),
+                    fileOrder: fileOrder,
+                    ogStateByUrl: ogStateByUrl,
+                    ogActiveUrl: ogActiveUrl,
+                    ogUrlOrder: ogUrlOrder
+                  }));
+
+                case 12:
                   return _context8.abrupt("return", _context8.sent);
 
-                case 14:
-                  _context8.next = 16;
+                case 15:
+                  _context8.next = 17;
                   return this.props.client.feed(this.props.feedGroup, this.props.userId).addActivity(modifiedActivity);
 
-                case 16:
+                case 17:
                   return _context8.abrupt("return", _context8.sent);
 
-                case 17:
+                case 18:
                 case "end":
                   return _context8.stop();
               }
@@ -99807,7 +99902,7 @@
           onPaste:
           /*#__PURE__*/
           function () {
-            var _ref8 = asyncToGenerator(
+            var _ref10 = asyncToGenerator(
             /*#__PURE__*/
             regenerator.mark(function _callee9(event) {
               var items, plainTextPromise, _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _loop, _iterator6, _step6, _ret, fileLikes, s;
@@ -99943,7 +100038,7 @@
             }));
 
             return function (_x8) {
-              return _ref8.apply(this, arguments);
+              return _ref10.apply(this, arguments);
             };
           }()
         })), this._isOgScraping() && React.createElement("div", {
@@ -99975,9 +100070,9 @@
           }
         }) : null)), availableOg && availableOg.length > 1 && React.createElement(React.Fragment, null, React.createElement("ol", {
           className: "raf-status-update-form__url-list"
-        }, availableOg.map(function (_ref9) {
-          var url = _ref9.url,
-              title = _ref9.title;
+        }, availableOg.map(function (_ref11) {
+          var url = _ref11.url,
+              title = _ref11.title;
           return React.createElement("li", {
             className: "raf-status-update-form__url-list-item".concat(url === _this4.state.ogActiveUrl ? ' raf-status-update-form__url-list-item--active' : ''),
             onClick: function onClick() {
@@ -100044,7 +100139,7 @@
           buttonStyle: "primary",
           loading: this.state.submitting,
           disabled: !this._canSubmit()
-        }, "Post"))))));
+        }, this.props.submitText ? this.props.submitText : 'Post'))))));
       }
     }]);
 
