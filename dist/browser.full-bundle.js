@@ -100134,7 +100134,7 @@
           multiple: true
         })), React.createElement(EmojiPicker, {
           onSelect: this._onSelectEmoji
-        }), this.props.FooterItem), React.createElement(Button, {
+        }), this.props.FooterItem), this.props.hideSubmit ? null : React.createElement(Button, {
           type: "submit",
           buttonStyle: "primary",
           loading: this.state.submitting,

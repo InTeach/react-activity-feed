@@ -6434,7 +6434,7 @@ function (_React$Component2) {
         multiple: true
       })), createElement(EmojiPicker, {
         onSelect: this._onSelectEmoji
-      }), this.props.FooterItem), createElement(Button, {
+      }), this.props.FooterItem), this.props.hideSubmit ? null : createElement(Button, {
         type: "submit",
         buttonStyle: "primary",
         loading: this.state.submitting,
