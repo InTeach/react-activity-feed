@@ -39,15 +39,15 @@ import {
 } from '../utils';
 import type {
   Attachments,
-    BaseAppCtx,
-    BaseActivityResponse,
-    OgData,
-    CustomActivityArgData,
-    ImageUpload,
-    FileUpload,
-    FileLike,
-    Trigger,
-    ReactRefObjectOrFunction,
+  BaseAppCtx,
+  BaseActivityResponse,
+  OgData,
+  CustomActivityArgData,
+  ImageUpload,
+  FileUpload,
+  FileLike,
+  Trigger,
+  ReactRefObjectOrFunction,
 } from '../types';
 
 import type { ActivityArgData } from 'getstream';
@@ -55,49 +55,51 @@ import type { ActivityArgData } from 'getstream';
 type Props = {|
   /** The feed group part of the feed that the activity should be posted to */
   feedGroup: string,
-    /** The user_id part of the feed that the activity should be posted to  */
-    userId ?: string,
-    /** The verb that should be used to post the activity */
-    activityVerb: string,
-      /** If you want to change something about the activity data that this form
-       * sends to stream you can do that with this function. This function gets the
-       * activity data that the form would send normally and should return the
-       * modified activity data that should be posted instead.
-       *
-       * For instance, this would add a target field to the activity:
-       *
-       * ```javascript
-       * &lt;StatusUpdateForm
-       *   modifyActivityData={(data) => ({...data, target: 'Group:1'})}
-       * />
-       * ```
-       * */
-      modifyActivityData: (activityData: {}) => ActivityArgData < {}, {} >,
-        /** Add extra footer item */
-        FooterItem ?: React.Node,
-        /** A callback to run after the activity is posted successfully */
-        onSuccess ?: (response: BaseActivityResponse) => mixed,
-        /** Override Post request */
-        doRequest ?: (activityData: {}) => Promise < BaseActivityResponse >,
-        /** An extra trigger for ReactTextareaAutocomplete, this can be used to show
-         * a menu when typing @xxx or #xxx, in addition to the emoji menu when typing
-         * :xxx  */
-        trigger ?: Trigger,
-        /** A ref that is bound to the textarea element */
-        innerRef ?: ReactRefObjectOrFunction < HTMLTextAreaElement >,
-        /** The header to display */
-        Header: React.Node,
-          submitText ?: string,
-          postContent ?: string,
-          imageUploads ?: { [string]: ImageUpload },
-          imageOrder ?: Array < string >,
-          ogActiveUrl ?: string,
-          ogUrlOrder ?: Array < string >,
-          ogStateByUrl ?: { [string]: OgState },
-          fileUploads ?: { [string]: FileUpload },
-          fileOrder ?: Array < string >,
-          hideSubmit ?: boolean
-            |};
+  /** The user_id part of the feed that the activity should be posted to  */
+  userId?: string,
+  /** The verb that should be used to post the activity */
+  activityVerb: string,
+  /** If you want to change something about the activity data that this form
+   * sends to stream you can do that with this function. This function gets the
+   * activity data that the form would send normally and should return the
+   * modified activity data that should be posted instead.
+   *
+   * For instance, this would add a target field to the activity:
+   *
+   * ```javascript
+   * &lt;StatusUpdateForm
+   *   modifyActivityData={(data) => ({...data, target: 'Group:1'})}
+   * />
+   * ```
+   * */
+  modifyActivityData: (activityData: {}) => ActivityArgData<{}, {}>,
+  /** Add extra footer item */
+  FooterItem?: React.Node,
+  /** A callback to run after the activity is posted successfully */
+  onSuccess?: (response: BaseActivityResponse) => mixed,
+  /** Override Post request */
+  doRequest?: (activityData: {}) => Promise<BaseActivityResponse>,
+  /** An extra trigger for ReactTextareaAutocomplete, this can be used to show
+   * a menu when typing @xxx or #xxx, in addition to the emoji menu when typing
+   * :xxx  */
+  trigger?: Trigger,
+  /** A ref that is bound to the textarea element */
+  innerRef?: ReactRefObjectOrFunction<HTMLTextAreaElement>,
+  /** The header to display */
+  Header: React.Node,
+  submitText?: string,
+  postContent?: string,
+  imageUploads?: { [string]: ImageUpload },
+  imageOrder?: Array<string>,
+  ogActiveUrl?: string,
+  ogUrlOrder?: Array<string>,
+  ogStateByUrl?: { [string]: OgState },
+  fileUploads?: { [string]: FileUpload },
+  fileOrder?: Array<string>,
+  hideSubmit?: boolean,
+  displayAvatar?: boolean,
+  i18n?: { [string]: string },
+|};
 
 /**
  * Component is described here.
@@ -130,21 +132,21 @@ export default class StatusUpdateForm extends React.Component<Props> {
 
 type OgState = {|
   scrapingActive: boolean,
-    data ?: ? OgData,
-    dismissed: boolean,
+  data?: ?OgData,
+  dismissed: boolean,
 |};
 
 type State = {|
   text: string,
-    imageUploads: { [string]: ImageUpload },
-imageOrder: Array < string >,
+  imageUploads: { [string]: ImageUpload },
+  imageOrder: Array<string>,
   fileUploads: { [string]: FileUpload },
-fileOrder: Array < string >,
+  fileOrder: Array<string>,
   ogUrlOrder: string[],
-    ogStateByUrl: { [string]: OgState },
-ogActiveUrl: ? string,
+  ogStateByUrl: { [string]: OgState },
+  ogActiveUrl: ?string,
   submitting: boolean,
-      |};
+|};
 
 type PropsInner = {| ...Props, ...BaseAppCtx |};
 class StatusUpdateFormInner extends React.Component<PropsInner, State> {
@@ -677,23 +679,29 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
             <PanelContent>
               <div style={{ display: 'flex' }}>
                 <React.Fragment>
-                  {userData.profileImage && (
-                    <div style={{ marginRight: '16px' }}>
-                      <Avatar
-                        image={
-                          // $FlowFixMe
-                          userData.profileImage ||
-                          'https://placehold.it/100x100'
-                        }
-                        size={50}
-                        circle
-                      />
-                    </div>
-                  )}
+                  {this.props.displayAvatar
+                    ? userData.profileImage && (
+                        <div style={{ marginRight: '16px' }}>
+                          <Avatar
+                            image={
+                              // $FlowFixMe
+                              userData.profileImage ||
+                              'https://placehold.it/100x100'
+                            }
+                            size={50}
+                            circle
+                          />
+                        </div>
+                      )
+                    : null}
                 </React.Fragment>
                 <Textarea
                   innerRef={this.textInputRef}
-                  placeholder="Type your post... "
+                  placeholder={
+                    this.props.i18n
+                      ? this.props.i18n.postPlaceholder
+                      : 'Type your post... '
+                  }
                   value={this.state.text}
                   onChange={this._onChange}
                   trigger={this.props.trigger}
@@ -752,27 +760,27 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                       }}
                     />
                   ) : (
-                      <React.Fragment>
-                        {activeOg.videos ? (
-                          <Video
-                            og={activeOg}
-                            handleClose={(e: any) => {
-                              e.preventDefault();
-                              this._dismissOg(activeOg);
-                            }}
-                          />
-                        ) : null}
-                        {activeOg.audios ? (
-                          <Audio
-                            og={activeOg}
-                            handleClose={(e: any) => {
-                              e.preventDefault();
-                              this._dismissOg(activeOg);
-                            }}
-                          />
-                        ) : null}
-                      </React.Fragment>
-                    )}
+                    <React.Fragment>
+                      {activeOg.videos ? (
+                        <Video
+                          og={activeOg}
+                          handleClose={(e: any) => {
+                            e.preventDefault();
+                            this._dismissOg(activeOg);
+                          }}
+                        />
+                      ) : null}
+                      {activeOg.audios ? (
+                        <Audio
+                          og={activeOg}
+                          handleClose={(e: any) => {
+                            e.preventDefault();
+                            this._dismissOg(activeOg);
+                          }}
+                        />
+                      ) : null}
+                    </React.Fragment>
+                  )}
                 </div>
               )}
               {availableOg && availableOg.length > 1 && (
@@ -784,7 +792,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                           url === this.state.ogActiveUrl
                             ? ' raf-status-update-form__url-list-item--active'
                             : ''
-                          }`}
+                        }`}
                         onClick={() =>
                           this.setState((prevState) => {
                             const ogState = prevState.ogStateByUrl[url];
@@ -845,14 +853,16 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
                   <EmojiPicker onSelect={this._onSelectEmoji} />
                   {this.props.FooterItem}
                 </div>
-                {this.props.hideSubmit ? null : <Button
-                  type="submit"
-                  buttonStyle="primary"
-                  loading={this.state.submitting}
-                  disabled={!this._canSubmit()}
-                >
-                  {this.props.submitText ? this.props.submitText : 'Post'}
-                </Button>}
+                {this.props.hideSubmit ? null : (
+                  <Button
+                    type="submit"
+                    buttonStyle="primary"
+                    loading={this.state.submitting}
+                    disabled={!this._canSubmit()}
+                  >
+                    {this.props.submitText ? this.props.submitText : 'Post'}
+                  </Button>
+                )}
               </div>
             </PanelFooter>
           </ImageDropzone>
