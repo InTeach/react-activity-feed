@@ -99884,7 +99884,7 @@
           style: {
             display: 'flex'
           }
-        }, React.createElement(React.Fragment, null, userData.profileImage && React.createElement("div", {
+        }, React.createElement(React.Fragment, null, this.props.displayAvatar ? userData.profileImage && React.createElement("div", {
           style: {
             marginRight: '16px'
           }
@@ -99893,9 +99893,9 @@
           userData.profileImage || 'https://placehold.it/100x100',
           size: 50,
           circle: true
-        }))), React.createElement(Textarea, {
+        })) : null), React.createElement(Textarea, {
           innerRef: this.textInputRef,
-          placeholder: "Type your post... ",
+          placeholder: this.props.i18n ? this.props.i18n.postPlaceholder : 'Type your post... ',
           value: this.state.text,
           onChange: this._onChange,
           trigger: this.props.trigger,

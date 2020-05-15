@@ -6184,7 +6184,7 @@ function (_React$Component2) {
         style: {
           display: 'flex'
         }
-      }, createElement(Fragment, null, userData.profileImage && createElement("div", {
+      }, createElement(Fragment, null, this.props.displayAvatar ? userData.profileImage && createElement("div", {
         style: {
           marginRight: '16px'
         }
@@ -6193,9 +6193,9 @@ function (_React$Component2) {
         userData.profileImage || 'https://placehold.it/100x100',
         size: 50,
         circle: true
-      }))), createElement(Textarea, {
+      })) : null), createElement(Textarea, {
         innerRef: this.textInputRef,
-        placeholder: "Type your post... ",
+        placeholder: this.props.i18n ? this.props.i18n.postPlaceholder : 'Type your post... ',
         value: this.state.text,
         onChange: this._onChange,
         trigger: this.props.trigger,
