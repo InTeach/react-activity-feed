@@ -554,11 +554,9 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
     let response = {};
     response = {};
     try {
-      response = await (this.props.customFileUpload
-        ? this.props.customFileUpload(file)
+      response = await (this.props.customUpload
+        ? this.props.customUpload(file)
         : this.props.client.images.upload(file));
-
-      console.log('response', response);
     } catch (e) {
       console.warn(e);
       let alreadyRemoved = false;
@@ -602,7 +600,9 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
     let response = {};
     response = {};
     try {
-      response = await this.props.client.files.upload(file);
+      response = await (this.props.customUpload
+        ? this.props.customUpload(file)
+        : this.props.client.images.upload(file));
     } catch (e) {
       console.warn(e);
       await this.setState((prevState) => {

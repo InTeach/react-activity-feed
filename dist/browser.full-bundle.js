@@ -99332,20 +99332,19 @@
                   response = {};
                   _context5.prev = 8;
                   _context5.next = 11;
-                  return _this2.props.customFileUpload ? _this2.props.customFileUpload(file) : _this2.props.client.images.upload(file);
+                  return _this2.props.customUpload ? _this2.props.customUpload(file) : _this2.props.client.images.upload(file);
 
                 case 11:
                   response = _context5.sent;
-                  console.log('response', response);
-                  _context5.next = 23;
+                  _context5.next = 22;
                   break;
 
-                case 15:
-                  _context5.prev = 15;
+                case 14:
+                  _context5.prev = 14;
                   _context5.t0 = _context5["catch"](8);
                   console.warn(_context5.t0);
                   alreadyRemoved = false;
-                  _context5.next = 21;
+                  _context5.next = 20;
                   return _this2.setState(function (prevState) {
                     var image = prevState.imageUploads[id];
 
@@ -99360,7 +99359,7 @@
                     };
                   });
 
-                case 21:
+                case 20:
                   if (!alreadyRemoved) {
                     _this2.props.errorHandler(_context5.t0, 'upload-image', {
                       feedGroup: _this2.props.feedGroup,
@@ -99370,8 +99369,8 @@
 
                   return _context5.abrupt("return");
 
-                case 23:
-                  _context5.next = 25;
+                case 22:
+                  _context5.next = 24;
                   return _this2.setState(function (prevState) {
                     img.state = 'finished';
                     img.url = response.file;
@@ -99380,12 +99379,12 @@
                     };
                   });
 
-                case 25:
+                case 24:
                 case "end":
                   return _context5.stop();
               }
             }
-          }, _callee5, null, [[8, 15]]);
+          }, _callee5, null, [[8, 14]]);
         }));
 
         return function (_x5) {
@@ -99428,7 +99427,7 @@
                   response = {};
                   _context6.prev = 8;
                   _context6.next = 11;
-                  return _this2.props.client.files.upload(file);
+                  return _this2.props.customUpload ? _this2.props.customUpload(file) : _this2.props.client.images.upload(file);
 
                 case 11:
                   response = _context6.sent;
