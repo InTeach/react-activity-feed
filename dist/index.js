@@ -5639,19 +5639,20 @@ function (_React$Component2) {
                 response = {};
                 _context5.prev = 8;
                 _context5.next = 11;
-                return _this2.props.client.images.upload(file);
+                return _this2.props.customFileUpload ? _this2.props.customFileUpload(file) : _this2.props.client.images.upload(file);
 
               case 11:
                 response = _context5.sent;
-                _context5.next = 22;
+                console.log('response', response);
+                _context5.next = 23;
                 break;
 
-              case 14:
-                _context5.prev = 14;
+              case 15:
+                _context5.prev = 15;
                 _context5.t0 = _context5["catch"](8);
                 console.warn(_context5.t0);
                 alreadyRemoved = false;
-                _context5.next = 20;
+                _context5.next = 21;
                 return _this2.setState(function (prevState) {
                   var image = prevState.imageUploads[id];
 
@@ -5666,7 +5667,7 @@ function (_React$Component2) {
                   };
                 });
 
-              case 20:
+              case 21:
                 if (!alreadyRemoved) {
                   _this2.props.errorHandler(_context5.t0, 'upload-image', {
                     feedGroup: _this2.props.feedGroup,
@@ -5676,8 +5677,8 @@ function (_React$Component2) {
 
                 return _context5.abrupt("return");
 
-              case 22:
-                _context5.next = 24;
+              case 23:
+                _context5.next = 25;
                 return _this2.setState(function (prevState) {
                   img.state = 'finished';
                   img.url = response.file;
@@ -5686,12 +5687,12 @@ function (_React$Component2) {
                   };
                 });
 
-              case 24:
+              case 25:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[8, 14]]);
+        }, _callee5, null, [[8, 15]]);
       }));
 
       return function (_x5) {
@@ -5882,11 +5883,6 @@ function (_React$Component2) {
   }
 
   _createClass(StatusUpdateFormInner, [{
-    key: "debugFunction",
-    value: function debugFunction() {
-      console.log('ta mere 2');
-    }
-  }, {
     key: "handleOG",
     value: function handleOG(text) {
       var _this3 = this;

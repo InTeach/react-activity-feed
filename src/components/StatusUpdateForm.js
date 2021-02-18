@@ -194,10 +194,6 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
     };
   }
 
-  debugFunction() {
-    console.log('ta mere 2');
-  }
-
   handleOG(text) {
     let newUrls;
     let removedUrls;
@@ -452,6 +448,7 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
       this.props.onSuccess(response);
     }
   };
+
   _getTextAreaElement = () => this.textInputRef.current;
 
   _onSelectEmoji = (emoji) => this._insertText(emoji.native);
@@ -557,7 +554,11 @@ class StatusUpdateFormInner extends React.Component<PropsInner, State> {
     let response = {};
     response = {};
     try {
-      response = await this.props.client.images.upload(file);
+      response = await (this.props.customFileUpload
+        ? this.props.customFileUpload(file)
+        : this.props.client.images.upload(file));
+
+      console.log('response', response);
     } catch (e) {
       console.warn(e);
       let alreadyRemoved = false;
